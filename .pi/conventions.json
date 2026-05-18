@@ -1,0 +1,37 @@
+{
+  "project": "grid-grid",
+  "stack": ["SvelteKit", "Svelte 5", "TypeScript", "CSS"],
+  "structure": {
+    "policy": "create warn; edit warn",
+    "zones": {
+      "src/routes": "SvelteKit pages and layouts",
+      "src/lib": "reusable components and logic",
+      "src/styles": "global CSS, design tokens"
+    },
+    "forbid": ["utils", "helpers", "common", "misc", "shared"]
+  },
+  "grid": {
+    "columns": 12,
+    "rows": "auto",
+    "gap": "1px",
+    "unit": "1fr"
+  },
+  "css": {
+    "tokens": "OKLCH preferred for color",
+    "noFrameworks": true,
+    "reducedMotion": "always respect prefers-reduced-motion",
+    "placement": "scoped <style> per page with semantic class names — no utility span classes"
+  },
+  "components": {
+    "naming": "PascalCase files, kebab-case CSS classes",
+    "scoped": "prefer <style> scoped in .svelte files",
+    "global": "only in src/styles or :global() when justified"
+  },
+  "gsap": {
+    "import": "always from $lib/gsap, never directly from gsap package",
+    "animate": "transforms and autoAlpha only — never top, left, width, height",
+    "scope": "always gsap.context(fn, container)",
+    "cleanup": "ctx.revert() + mm.revert() on unmount"
+  },
+  "commits": "conventional commits — feat:, fix:, refactor:, chore:"
+}
