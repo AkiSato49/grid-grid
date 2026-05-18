@@ -1,14 +1,10 @@
 <script lang="ts">
   import '../app.css';
   import { onMount } from 'svelte';
-  import { onNavigate, afterNavigate } from '$app/navigation';
-  import { gsap } from '$lib/gsap';
   import { theme } from '$lib/theme';
   import { devMode } from '$lib/dev';
 
   let { children } = $props();
-
-  const mm = gsap.matchMedia();
 
   onMount(() => {
     document.documentElement.dataset.theme = theme;
@@ -28,45 +24,6 @@
         grid.appendChild(overlay);
       });
     }
-
-    mm.add(
-      { reduceMotion: '(prefers-reduced-motion: reduce)' },
-      (ctx) => {
-        if (ctx.conditions?.reduceMotion) gsap.globalTimeline.timeScale(0);
-        else gsap.globalTimeline.timeScale(1);
-      }
-    );
-  });
-
-  $effect(() => {
-    return () => mm.revert();
-  });
-
-  // Exit: fires after data loads, before DOM swap.
-  // Return a Promise — SvelteKit waits for it to resolve before swapping.
-  onNavigate(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    return new Promise<void>((resolve) => {
-      gsap.to('main', {
-        autoAlpha: 0,
-        y: -8,
-        duration: 0.25,
-        ease: 'power2.in',
-        onComplete: resolve,
-      });
-    });
-  });
-
-  // Enter: fires after DOM is updated with the new page.
-  afterNavigate(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    gsap.fromTo(
-      'main',
-      { autoAlpha: 0, y: 8 },
-      { autoAlpha: 1, y: 0, duration: 0.35, ease: 'power2.out', clearProps: 'all' }
-    );
   });
 </script>
 
