@@ -1,0 +1,17 @@
+@import './styles/tokens.css';
+@import './styles/themes.css';
+@import './styles/typography.css';
+@import './styles/grid.css';
+@import './styles/dev.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  min-height: 100dvh;
+}

@@ -1,0 +1,30 @@
+{
+  "project": "grid-grid",
+  "stack": ["SvelteKit", "Svelte 5", "TypeScript", "CSS"],
+  "structure": {
+    "policy": "create warn; edit warn",
+    "zones": {
+      "src/routes": "SvelteKit pages and layouts",
+      "src/lib": "reusable components and logic",
+      "src/styles": "global CSS, design tokens"
+    },
+    "forbid": ["utils", "helpers", "common", "misc", "shared"]
+  },
+  "grid": {
+    "columns": 12,
+    "rows": "auto",
+    "gap": "1px",
+    "unit": "1fr"
+  },
+  "css": {
+    "tokens": "OKLCH preferred for color",
+    "noFrameworks": true,
+    "reducedMotion": "always respect prefers-reduced-motion"
+  },
+  "components": {
+    "naming": "PascalCase files, kebab-case CSS classes",
+    "scoped": "prefer <style> scoped in .svelte files",
+    "global": "only in src/styles or +:global() when justified"
+  },
+  "commits": "conventional commits — feat:, fix:, refactor:, chore:"
+}

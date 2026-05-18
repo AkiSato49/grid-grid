@@ -1,0 +1,47 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
+
+body {
+  font-family: 'Satoshi', system-ui, sans-serif;
+  font-size: var(--t-md);
+  line-height: var(--lh-md);
+  /* Chrome/Safari: trim dead space above cap-height */
+  text-box-trim: trim-start;
+  text-box-edge: cap alphabetic;
+}
+
+/* ─── Type scale ─────────────────────────────────────────── */
+.t-xs  { font-size: var(--t-xs);  line-height: var(--lh-xs);  }
+.t-sm  { font-size: var(--t-sm);  line-height: var(--lh-sm);  }
+.t-md  { font-size: var(--t-md);  line-height: var(--lh-md);  }
+.t-lg  { font-size: var(--t-lg);  line-height: var(--lh-lg);  }
+.t-xl  { font-size: var(--t-xl);  line-height: var(--lh-xl);  }
+.t-2xl { font-size: var(--t-2xl); line-height: var(--lh-2xl); }
+.t-3xl { font-size: var(--t-3xl); line-height: var(--lh-3xl); }
+.t-4xl { font-size: var(--t-4xl); line-height: var(--lh-4xl); }
+.t-5xl { font-size: var(--t-5xl); line-height: var(--lh-5xl); }
+.t-6xl { font-size: var(--t-6xl); line-height: var(--lh-6xl); }
+
+/* ─── Cap-height trim fallback (Firefox 120+) ────────────────
+ * text-box-trim removes the space above cap-height natively.
+ * For Firefox: approximate using lh + cap units.
+ *
+ * Space above cap in line box:
+ *   = (ascender - capHeight) * 1em  +  (1lh - 1em) / 2
+ *   = var(--font-cap-offset) * 1em  +  (1lh - 1em) / 2
+ *
+ * Applied as ::before display:block so it doesn't affect layout.
+ */
+@supports not (text-box-trim: trim-start) {
+  [class^="t-"]::before,
+  [class*=" t-"]::before {
+    content: '';
+    display: block;
+    height: 0;
+    margin-top: calc(
+      -1 * (
+        var(--font-cap-offset) * 1em                         /* ascender above cap                        */
+        + (1lh - var(--font-natural-height) * 1em) / 2      /* half-leading = (lh - ascender - descender) */
+      )
+    );
+  }
+}

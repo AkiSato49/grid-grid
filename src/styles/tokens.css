@@ -1,0 +1,55 @@
+:root {
+  /* ─── Baseline ───────────────────────────────────────────── */
+  --bl: 0.5rem; /* 8px — all vertical rhythm is N × --bl */
+
+  /* ─── Satoshi font metrics ──────────────────────────────── */
+  /* used for cross-browser cap-height trim (see typography.css) */
+  --font-ascender:   1.01;  /* sTypoAscender / UPM  */
+  --font-cap-height: 0.716; /* sCapHeight / UPM     */
+  --font-x-height:   0.484; /* sxHeight / UPM       */
+  --font-descender:  0.24;  /* sTypoDescender / UPM */
+  --font-line-gap:   0.1;   /* sTypoLineGap / UPM   */
+  /* space above cap in em box = ascender - capHeight */
+  --font-cap-offset:      0.294; /* = 1.01 - 0.716          */
+  /* natural em height = ascender + |descender| */
+  --font-natural-height:  1.25;  /* = 1.01 + 0.24           */
+
+  /* ─── Type scale ─────────────────────────────────────────── */
+  /*
+   * label   font-size   line-height   baselines
+   * ──────  ─────────   ───────────   ─────────
+   * --t-xs   0.625rem     1rem  (8px×2)    2bl
+   * --t-sm   0.75rem      1rem  (8px×2)    2bl
+   * --t-md   1rem         1.5rem(8px×3)    3bl
+   * --t-lg   1.25rem      2rem  (8px×4)    4bl
+   * --t-xl   1.75rem      2.5rem(8px×5)    5bl
+   * --t-2xl  2.5rem       3rem  (8px×6)    6bl  ← heading
+   * --t-3xl  3.5rem       4rem  (8px×8)    8bl  ← display
+   * --t-4xl  5rem         5.5rem(8px×11)  11bl  ← hero
+   * --t-5xl  7rem         7.5rem(8px×15)  15bl  ← poster
+   * --t-6xl  9.5rem       10rem (8px×20)  20bl  ← billboard
+   */
+  --t-xs:  0.625rem;   --lh-xs:  1rem;
+  --t-sm:  0.75rem;    --lh-sm:  1rem;
+  --t-md:  1rem;       --lh-md:  1.5rem;
+  --t-lg:  1.25rem;    --lh-lg:  2rem;
+  --t-xl:  1.75rem;    --lh-xl:  2.5rem;
+  --t-2xl: 2.5rem;     --lh-2xl: 3rem;
+  --t-3xl: 3.5rem;     --lh-3xl: 4rem;
+  --t-4xl: 5rem;       --lh-4xl: 5.5rem;
+  --t-5xl: 7rem;       --lh-5xl: 7.5rem;
+  --t-6xl: 9.5rem;     --lh-6xl: 10rem;
+
+  /* ─── Spacing (baseline multiples) ──────────────────────── */
+  --sp-1:  calc(var(--bl) * 1);  /* 0.5rem  /  8px */
+  --sp-2:  calc(var(--bl) * 2);  /* 1rem    / 16px */
+  --sp-3:  calc(var(--bl) * 3);  /* 1.5rem  / 24px */
+  --sp-4:  calc(var(--bl) * 4);  /* 2rem    / 32px */
+  --sp-6:  calc(var(--bl) * 6);  /* 3rem    / 48px */
+  --sp-8:  calc(var(--bl) * 8);  /* 4rem    / 64px */
+  --sp-12: calc(var(--bl) * 12); /* 6rem    / 96px */
+  --sp-16: calc(var(--bl) * 16); /* 8rem    /128px */
+
+  /* ─── Row height ─────────────────────────────────────────── */
+  --row-h: calc(var(--bl) * 8); /* 4rem / 64px — 1 row unit */
+}

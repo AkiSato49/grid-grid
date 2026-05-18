@@ -1,0 +1,33 @@
+/* ─── Page ───────────────────────────────────────────────────
+ * Full-viewport flex column. Two .grid children → top / bottom.
+ */
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100dvw;
+  height: 100dvh;
+  padding: var(--sp-4);
+  gap: var(--sp-2);
+}
+
+/* ─── Grid ───────────────────────────────────────────────────
+ * 12-col, auto rows locked to --row-h (8bl = 64px).
+ * Place children with scoped styles: grid-column / grid-row.
+ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: var(--row-h);
+  gap: var(--sp-2);
+}
+
+/* ─── Grid children ─────────────────────────────────────────
+ * Content sits at bottom, overflows visibly. No wrapper needed.
+ */
+.grid > *:not(.dev-grid-overlay) {
+  display: flex;
+  align-items: flex-start;
+  min-width: 0;
+  overflow: visible;
+}

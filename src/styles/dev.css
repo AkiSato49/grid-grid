@@ -1,0 +1,84 @@
+/* ─── Dev overlay ────────────────────────────────────────────
+ * Enabled via data-dev="true" on <html>.
+ * Set src/lib/dev.ts → dev = true to activate.
+ *
+ * Columns + gutters: injected .dev-grid-overlay per .grid (JS)
+ * Rows:              ::after on .grid (CSS)
+ * Margins:           ::before on .page (CSS)
+ */
+
+/* ── Grid needs relative so overlays can position inside it ─ */
+[data-dev="true"] .grid {
+  position: relative;
+}
+
+/* ── Row lines ───────────────────────────────────────────── */
+[data-dev="true"] .grid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9000;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent var(--row-h),
+    oklch(55% 0.18 150 / 0.2) var(--row-h),
+    oklch(55% 0.18 150 / 0.2) calc(var(--row-h) + var(--sp-2))
+  );
+  background-size: 100% calc(var(--row-h) + var(--sp-2));
+}
+
+/* ── Column overlay (injected per .grid via JS) ──────────── */
+.dev-grid-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--sp-2);
+  pointer-events: none;
+  z-index: 9001;
+}
+
+.dev-grid-overlay > * {
+  background: oklch(55% 0.18 260 / 0.08);
+  border-left:  1px solid oklch(55% 0.18 260 / 0.35);
+  border-right: 1px solid oklch(55% 0.18 260 / 0.35);
+  padding-left: var(--sp-1);
+  font-size: var(--t-xs);
+  line-height: var(--lh-xs);
+  color: oklch(55% 0.18 260 / 0.6);
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* ── Margin lines ────────────────────────────────────────── */
+/* marks the --sp-4 boundary on .page */
+[data-dev="true"] .page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9002;
+  background-image:
+    linear-gradient(to bottom, oklch(55% 0.2 30 / 0.5) 1px, transparent 1px),
+    linear-gradient(to top,    oklch(55% 0.2 30 / 0.5) 1px, transparent 1px),
+    linear-gradient(to right,  oklch(55% 0.2 30 / 0.5) 1px, transparent 1px),
+    linear-gradient(to left,   oklch(55% 0.2 30 / 0.5) 1px, transparent 1px);
+  background-size:
+    100% var(--sp-4),
+    100% var(--sp-4),
+    var(--sp-4) 100%,
+    var(--sp-4) 100%;
+  background-position:
+    0 var(--sp-4),
+    0 calc(100% - var(--sp-4)),
+    var(--sp-4) 0,
+    calc(100% - var(--sp-4)) 0;
+  background-repeat: no-repeat;
+}
+
+[data-dev="true"] .page {
+  position: relative;
+}

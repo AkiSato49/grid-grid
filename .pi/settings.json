@@ -1,0 +1,12 @@
+{
+  "skills": [
+    "sveltekit-best-practices",
+    "typescript-best-practices",
+    "frontend-rules",
+    "gsap-core",
+    "gsap-frameworks",
+    "gsap-scrolltrigger",
+    "gsap-timeline",
+    "gsap-performance"
+  ]
+}
